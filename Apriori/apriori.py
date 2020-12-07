@@ -1,12 +1,7 @@
 
 import itertools as it
-tr_count = int(input("Kaç transaction girilecek: "))
-min_sup = int(input("Min sup: "))
-transactions = list()
-tr_str_list = list()
-items = ["a","b","c","d","e"]
-popularSet = list()
-def item_kontrol(tr_str): #item a,b,c,d,e olmalı else: gecersiz giris yptiniz
+
+def item_kontrol(tr_str): #item a,b,c,d,e olmalı else: gecersiz giris yaptiniz
 	tr_str_approve = tr_str.split(" ")
 	is_ok = 0
 	for i in tr_str_approve:
@@ -46,7 +41,9 @@ def find_coefficient(combination_list):
 		if count_item >= min_sup:
 			if(count_item > local_counter):
 				local_counter = count_item
-				popularSet.append(list(combination_list[i]))
+				
+			popularSetDict = { 'name' : combination_list[i], 'support' : count_item, 'size' : len(combination_list[i])}
+			popularSet.append(popularSetDict)
 			print (str(combination_list[i])+" kümesinin sup. degeri --> "+str(count_item))
 
 
@@ -60,6 +57,13 @@ def find_longest_item():
 	return item_index
 	
 
+tr_count = int(input("Kaç transaction girilecek: "))
+min_sup = int(input("Min sup: "))
+transactions = list() 
+tr_str_list = list()
+items = ["a","b","c","d","e"]
+popularSet = list() #en sık geçen item kümesi list
+popularSetDict= {} #en sık geçen item kümesini hesaplamak için name,support,size parametreleri bulunuyor
 
 for i in range(0,tr_count):
 	control = 0
@@ -78,4 +82,15 @@ for i in range(1,tr_count+1):
 	print("T"+str(i)+"=>"+str(tr_str_list[i-1]))
 
 print("\nApriori sonucunda En sık Geçen Item Kumesi")
-print(popularSet[-1])
+len_popular_set = len(popularSet)
+for i in range(1,len_popular_set):
+	print((popularSet[len_popular_set-i])['name'])
+	support = (popularSet[len_popular_set-i])['support']
+	support_before = (popularSet[len_popular_set-(i+1)])['support']
+	size = (popularSet[len_popular_set-i])['size']
+	size_before = (popularSet[len_popular_set-(i+1)])['size']
+	if( size == size_before and support == support_before):
+		continue
+	else:
+		break
+
