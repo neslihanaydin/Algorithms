@@ -9,7 +9,7 @@ for i in range(8):
 	if(saat>22 or saat<9 ):
 		print("Bugünlük bu kadar çalışma yeter..")
 		break
-	if(dakika+30<60):
+	if(dakika+30<60): #dakika=25 --> dakika = 30
 		dakika = dakika+30
 	elif(dakika+30==60):
 		dakika = 0
