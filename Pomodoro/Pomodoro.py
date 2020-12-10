@@ -4,23 +4,23 @@ zaman = zaman.split(":")
 saat = int(zaman[0])
 dakika = int(zaman[1])
 pomodoro = 0
-
+file = open("pomodoro.txt","w")
 for i in range(8):
 	if(saat>22 or saat<9 ):
 		print("Bugünlük bu kadar çalışma yeter..")
 		break
-	if(dakika+25<60):
-		dakika = dakika+25
-	elif(dakika+25==60):
+	if(dakika+30<60):
+		dakika = dakika+30
+	elif(dakika+30==60):
 		dakika = 0
 		saat = saat+1
 		if(saat == 24):
 			saat = 0
-	elif(dakika+25>60):
+	elif(dakika+30>60):
 		saat = saat+1
 		if(saat == 24):
 			saat = 0
-		dakika = (dakika+25)-60
+		dakika = (dakika+30)-60
 	if(dakika<10):
 		str_dakika = "0"+str(dakika)
 	else:
@@ -30,10 +30,12 @@ for i in range(8):
 	else:
 		str_saat = str(saat)
 	zaman =str_saat+":"+str_dakika
-	print(zaman_bfr+" - "+zaman+" --> Pomodoro "+str(i+1))
+	metin = zaman_bfr+" - "+zaman+" --> Pomodoro "+str(i+1)
+	print(metin)
+	file.write(metin+"\n")
 	pomodoro = pomodoro +1
 	#print ("Pomodoro 1 -> "+zaman_bfr+" - "+zaman)
-	mola_time = 5
+	mola_time = 10
 	if( pomodoro ==4 ):
 		mola_time = 30
 
@@ -63,8 +65,10 @@ for i in range(8):
 	#print ("MOLA -> "+zaman_bfr+" - "+zaman)
 	zaman_bfr = zaman
 
+file.close()
 	# TODO : 4 pomodoro sonrası 30 dk mola ya da 2 pomodoro sonrası 20 dakika mola --done
-	# Çalışma saatlerinin çıktısını bir dosyaya kaydet
+	# Çalışma saatlerinin çıktısını bir dosyaya kaydet --done
 	# Gece Saat 23'e kadar pomodoro çıktısı alsın. Ya da gün sonuna kadar --done
 	# Her pomodoro için bir alarm kursun
+	# For döngüsüne başka bir koşul koy
 
