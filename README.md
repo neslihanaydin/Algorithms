@@ -1,1 +1,4 @@
 # Algorithms
+
+Apriori
+Tax Calculator
