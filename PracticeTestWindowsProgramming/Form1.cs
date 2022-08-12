@@ -447,3 +447,18 @@ namespace PracticeTestForFinal
         }
     }
 }
+
+
+/*
+ * Creating and opening a file
+
+Var path = @”file.txt”;
+  FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
+
+1) Append: It opens the file if it exists and places the cursor at the end of the file or creates a new file 
+2) Create: It creates a new file
+3) CreateNew: It specifies to an operating system that a new file should be created
+4) Open: It opens an existing file
+5) OpenOrCreate: It specifies to the system that open a file I it exists, else create a new file
+6) Truncate: It opens an existing file. When opened, the file should be truncated, the size of the file is zero bytes.
+*/
